@@ -1,25 +1,27 @@
 "use client";
- 
-import { useActionState } from "react";
 import postRecipe from "@/actions/action";
-import { success } from "zod";
-
-const RecipiForm = () => { 
-  const [state, postRecipeAction, isPending] = useActionState(postRecipe, {
-
-  success: null,
-    message: "Ha! Som om det er en opskrift du kan sætte ind. Ved du hvad du kan? Du kan sæt dig på den! Idiot",
-  });
-}
+import { useActionState } from "react";
 
 const RecipeForm = () => {
+  const [state, postRecipeAction, isPending] = useActionState(postRecipe, {
+    success: null,
+    message: "",
+  });
   return (
-    <form action={postRecipe}>
-      <input type="text" name="recipename" placeholder="Opskriftens titel" className="border" />
-      <button type="submit" className="border">
-        Opret opskrift
-      </button>
-    </form>
+    <>
+      <section className="flex flex-col justify-center p-40 ">
+        <div>
+          <form action={postRecipeAction}>
+            <input type="text" name="recipename" placeholder="Opskriftens titel" className="border "
+            defaultValue={} />
+            <button type="submit" disabled={isPending} className="border ">
+              {isPending ? "Opretter..." : "Opret opskrift"}
+            </button>
+          </form>
+        </div>
+        {state.message && <div className={state.success ? "text-green-700" : "text-red-700"}>{state.message}</div>}
+      </section>
+    </>
   );
 };
 
