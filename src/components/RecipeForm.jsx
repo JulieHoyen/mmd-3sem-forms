@@ -13,7 +13,7 @@ const RecipeForm = () => {
         <div>
           <form action={postRecipeAction}>
             <input type="text" name="recipename" placeholder="Opskriftens titel" className="border "
-            defaultValue={} />
+            defaultValue="Arrrrh..!" />
             <button type="submit" disabled={isPending} className="border ">
               {isPending ? "Opretter..." : "Opret opskrift"}
             </button>
