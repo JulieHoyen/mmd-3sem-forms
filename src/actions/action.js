@@ -1,7 +1,7 @@
 "use server";
-import * as z from "zod";
-import { Recipe } from "@/schemas/recipeSchema";
-import { success } from "zod";
+// import * as z from "zod";
+// import { Recipe } from "@/schemas/recipeSchema";
+// import { success } from "zod";
 
 
 
@@ -23,9 +23,11 @@ try {
     console.log(`Response status: ${response.status}`);
 return { success: true, message: "Opskriften blev oprettet. Hurra!!!!" };
 
-  } catch (error) {
+  } catch (error instanceof z.ZodEorror) {
     console.log(error.message);
-return { success: false, message: "Der er desværre sket en fejl. Prøv igen senere"};
+return { success: false, message: "Der er desværre sket en fejl. Prøv igen senere", fieldErros: z.flattenError(error).fieldErros,
+    
+};
 }
 
 

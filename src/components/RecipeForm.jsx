@@ -1,19 +1,31 @@
 "use client";
 import postRecipe from "@/actions/action";
 import { useActionState } from "react";
+import { useState } from "react";
 
 const RecipeForm = () => {
   const [state, postRecipeAction, isPending] = useActionState(postRecipe, {
     success: null,
     message: "",
   });
+  const [formFields, setFormFields] = useState({ recipename: "" });
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    setFormFields((currentFields) => ({
+      ...currentFields,
+      [name]: value,
+    }));
+  }
+
   return (
     <>
       <section className="flex flex-col justify-center p-40 ">
         <div>
           <form action={postRecipeAction}>
-            <input type="text" name="recipename" placeholder="Opskriftens titel" className="border "
-            defaultValue="Arrrrh..!" />
+            <input type="text" name="recipename" value={formFields.recipename} placeholder="Opskriftens titel" className="border" onChange={handleChange} />
+
             <button type="submit" disabled={isPending} className="border ">
               {isPending ? "Opretter..." : "Opret opskrift"}
             </button>
