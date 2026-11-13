@@ -35,6 +35,41 @@ const RecipeForm = () => {
 
   return (
     <>
+
+
+
+
+
+
+
+
+<form action={postRecipeAction} noValidate>
+  <div>
+    <label htmlFor="recipename">
+      Opskriftens titel
+    </label>
+    <input
+      type="text"
+      name="recipename"
+      value={formFields.recipename}
+      placeholder="Fx. Lasagne"
+      onChange={handleChange}
+    />
+  </div>
+  <button type="submit">
+    Opret opskrift
+  </button>
+</form>
+
+
+
+
+
+
+
+
+
+
       <section className="min-h-screen bg-orange-100 px-4 py-12 sm:px-8">
         <article className="mx-auto max-w-2xl rounded-2xl border border-orange-200 bg-orange-50 p-6 shadow-sm sm:p-10">
           <form action={postRecipeAction} noValidate className="flex flex-col gap-6">
@@ -83,7 +118,7 @@ const RecipeForm = () => {
               </label>
               <input type="number" name="prepTimeMinutes" min="1" value={formFields.prepTimeMinutes} placeholder="Fx. 40" onChange={handleChange} className="w-60 rounded-lg border border-amber-300 bg-white px-4 py-3 text-amber-950 placeholder:text-orange-300" />
               {state.fieldErrors?.prepTimeMinutes?.[0] && <p className="text-red-700 text-sm">{state.fieldErrors.prepTimeMinutes[0]}</p>}
-              <p className="px-4 py-3 text-amber-950 w-20">min</p>
+             
             </div>
 
             <div>

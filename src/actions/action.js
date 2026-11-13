@@ -53,7 +53,6 @@ const postRecipe = async (previousState, formData) => {
         difficulty: validatedFields.data.difficulty,
 
         prepTimeMinutes: validatedFields.data.prepTimeMinutes,
-     
 
         // cookTimeMinutes: validatedFields.data.cookTimeMinutes
         //   .split(",")
